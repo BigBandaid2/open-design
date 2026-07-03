@@ -278,6 +278,10 @@ type ProjectChatSendMeta = ChatSendMeta & {
    *  lives in the queue item, so a pre-run block (e.g. the AMR balance gate)
    *  must NOT re-queue it — only pause further drains. */
   queueDrain?: boolean;
+  /** The Open Design Cloud balance gate already ran for this exact send at
+   *  the home submit (with any soft warning answered there); skip re-gating
+   *  so the user is never double-prompted for one task. */
+  amrGatePrechecked?: boolean;
 };
 
 export function mergeSavedPreviewComment(current: PreviewComment[], saved: PreviewComment): PreviewComment[] {
@@ -759,6 +763,12 @@ function autoSendContextKey(projectId: string): string {
   return `od:auto-send-context:${projectId}`;
 }
 
+/** Set by the home create flow when its submit already ran the Open Design
+ * Cloud balance gate — the first auto-send must not re-prompt the user. */
+function autoSendAmrGateOkKey(projectId: string): string {
+  return `od:auto-send-amr-gate-ok:${projectId}`;
+}
+
 function designSystemAuditAutoRepairKey(projectId: string): string {
   return `od:design-system-audit-auto-repair:${projectId}`;
 }
@@ -794,6 +804,7 @@ function clearAutoSendSession(projectId: string): void {
     window.sessionStorage.removeItem(autoSendFirstMessageKey(projectId));
     window.sessionStorage.removeItem(autoSendAttachmentsKey(projectId));
     window.sessionStorage.removeItem(autoSendContextKey(projectId));
+    window.sessionStorage.removeItem(autoSendAmrGateOkKey(projectId));
   } catch {
     /* ignore */
   }
@@ -4295,8 +4306,9 @@ export function ProjectView({
       // Open Design Cloud pre-run balance gate: a definitively insufficient
       // wallet blocks the run BEFORE any message is persisted or a daemon run
       // spawned, surfacing the subscription dialog instead of a mid-run
-      // AMR_INSUFFICIENT_BALANCE failure.
-      if (config.mode === 'daemon' && config.agentId === 'amr') {
+      // AMR_INSUFFICIENT_BALANCE failure. Sends the home submit already gated
+      // (amrGatePrechecked) pass straight through — the user answered there.
+      if (config.mode === 'daemon' && config.agentId === 'amr' && !meta?.amrGatePrechecked) {
         const gateConversationId = activeConversationId;
         // The gate's await opens a window where the conversation is not yet
         // marked busy. A second send arriving during that window behaves like
@@ -6852,16 +6864,22 @@ export function ProjectView({
   const autoSendAttachmentsRef = useRef<ChatAttachment[] | null>(null);
   const autoSendContextRef = useRef<RunContextSelection | null>(null);
   const autoSendFirstMessageRef = useRef(false);
+  const autoSendAmrGateOkRef = useRef(false);
   if (autoSendSeedRef.current === null) {
     let isAutoSend = false;
+    let amrGateOk = false;
     try {
       isAutoSend = Boolean(
         window.sessionStorage.getItem(autoSendFirstMessageKey(project.id)),
+      );
+      amrGateOk = Boolean(
+        window.sessionStorage.getItem(autoSendAmrGateOkKey(project.id)),
       );
     } catch {
       /* sessionStorage may be unavailable; treat as manual flow. */
     }
     autoSendFirstMessageRef.current = isAutoSend;
+    autoSendAmrGateOkRef.current = isAutoSend && amrGateOk;
     autoSendSeedRef.current = isAutoSend ? (project.pendingPrompt ?? '') : '';
     autoSendAttachmentsRef.current = isAutoSend ? readAutoSendAttachments(project.id) : [];
     autoSendContextRef.current = isAutoSend ? readAutoSendContext(project.id) : null;
@@ -7493,7 +7511,12 @@ export function ProjectView({
     }
     clearAutoSendSession(project.id);
     autoSendAttachmentsRef.current = [];
-    void handleSend(seed, attachments, [], context ? { context } : undefined);
+    void handleSend(seed, attachments, [], {
+      ...(context ? { context } : {}),
+      // The home submit already gated this exact task (and the user answered
+      // any soft warning there); asking again would double-prompt.
+      ...(autoSendAmrGateOkRef.current ? { amrGatePrechecked: true } : {}),
+    });
   }, [
     activeConversationId,
     messagesInitialized,

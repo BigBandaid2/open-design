@@ -237,6 +237,9 @@ type EntryCreateProjectInput = Omit<CreateInput, 'metadata'> & {
   initialRunContext?: RunContextSelection | null;
   conversationMode?: ChatSessionMode;
   autoSendFirstMessage?: boolean;
+  /** The home submit already ran the Open Design Cloud balance gate; the
+   *  project's first auto-send must not re-gate. */
+  amrGatePrechecked?: boolean;
   requestId?: string;
   pendingFiles?: File[];
   userWorkingDirToken?: string;
@@ -661,6 +664,7 @@ export function EntryShell({
     // project is created, so the dialog appears right here on the home page
     // and the composer keeps its draft. In-project sends are gated separately
     // in ProjectView.handleSend.
+    let amrGatePrechecked = false;
     if (config.mode === 'daemon' && config.agentId === 'amr') {
       const gate = await checkAmrBalanceGate();
       if (gate.kind === 'hard') {
@@ -677,6 +681,9 @@ export function EntryShell({
         setAmrLowBalanceWarn(null);
         if (decision !== 'proceed') return 'blocked' as const;
       }
+      // The decision (or clean pass) carries into the created project's first
+      // auto-send, which must not re-prompt what the user just answered.
+      amrGatePrechecked = true;
     }
     const summarizedName = summarizeProjectNameFromPrompt(payload.prompt);
     const head = payload.prompt.trim().split(/\s+/).slice(0, 8).join(' ');
@@ -743,6 +750,7 @@ export function EntryShell({
       // not need the desktop main-process trust token that baseDir imports
       // require for write access.
       autoSendFirstMessage: true,
+      amrGatePrechecked,
     });
   }
 
