@@ -50,14 +50,16 @@
   background: var(--bg-subtle);
 }
 
-/* Eyebrow label naming whose advantages the list below sells. */
+/* Eyebrow label naming whose advantages the list below sells. Accent, not
+ * gray: the brand attribution is the label's whole job, and it ties the card
+ * to the check icons and CTA without competing with the main title. */
 .benefitsTitle {
   display: block;
   margin-bottom: 10px;
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: var(--text-faint);
+  color: var(--accent);
 }
 
 .benefits {
