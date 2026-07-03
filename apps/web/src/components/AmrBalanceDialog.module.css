@@ -73,7 +73,8 @@
 
 .benefit {
   display: flex;
-  align-items: center;
+  /* Top-align so the check hugs the first line when an item wraps. */
+  align-items: flex-start;
   gap: 10px;
   font-size: 13px;
   color: var(--text);
