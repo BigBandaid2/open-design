@@ -117,16 +117,21 @@ export function AmrBalanceDialog({
           {t('chat.amrBalanceGate.balanceLabel')} {formattedBalance}
         </span>
       ) : null}
-      <ul className={styles.benefits}>
-        {benefits.map((benefit) => (
-          <li key={benefit} className={styles.benefit}>
-            <span className={styles.benefitIcon} aria-hidden>
-              <Icon name="check" size={14} />
-            </span>
-            {benefit}
-          </li>
-        ))}
-      </ul>
+      <div className={styles.benefitsCard}>
+        <span className={styles.benefitsTitle}>
+          {t('chat.amrBalanceGate.benefitsTitle')}
+        </span>
+        <ul className={styles.benefits}>
+          {benefits.map((benefit) => (
+            <li key={benefit} className={styles.benefit}>
+              <span className={styles.benefitIcon} aria-hidden>
+                <Icon name="check" size={14} />
+              </span>
+              {benefit}
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className={styles.actions}>
         {signedOut ? (
           <AmrLoginPill

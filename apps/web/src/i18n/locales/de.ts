@@ -14,6 +14,7 @@ export const de: Dict = {
   'chat.amrBalanceGate.title': 'Hol dir Guthaben und gestalte weiter',
   'chat.amrBalanceGate.message': 'Guthaben reicht nicht aus. Nach Plan-Upgrade oder Aufladung kann die Aufgabe sofort starten.',
   'chat.amrBalanceGate.balanceLabel': 'Aktuelles Guthaben',
+  'chat.amrBalanceGate.benefitsTitle': 'Das bietet dir Open Design Cloud',
   'chat.amrBalanceGate.benefit1': 'Keine API-Keys — Top-Modelle frei wählbar',
   'chat.amrBalanceGate.benefit2': 'SOTA-Design-Agent integriert, ohne Einrichtung',
   'chat.amrBalanceGate.benefit3': 'Offizieller, zuverlässiger Dienst',

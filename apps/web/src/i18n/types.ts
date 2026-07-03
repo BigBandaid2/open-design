@@ -2398,6 +2398,7 @@ export interface Dict {
   'chat.amrBalanceGate.title': string;
   'chat.amrBalanceGate.message': string;
   'chat.amrBalanceGate.balanceLabel': string;
+  'chat.amrBalanceGate.benefitsTitle': string;
   'chat.amrBalanceGate.benefit1': string;
   'chat.amrBalanceGate.benefit2': string;
   'chat.amrBalanceGate.benefit3': string;

@@ -14,6 +14,7 @@ export const hu: Dict = {
   'chat.amrBalanceGate.title': 'Szerezz keretet és alkoss tovább',
   'chat.amrBalanceGate.message': 'Nincs elég keret. Csomagváltás vagy feltöltés után a feladat azonnal indulhat.',
   'chat.amrBalanceGate.balanceLabel': 'Jelenlegi egyenleg',
+  'chat.amrBalanceGate.benefitsTitle': 'Amit az Open Design Cloud nyújt',
   'chat.amrBalanceGate.benefit1': 'API-kulcs nélkül, rengeteg modell',
   'chat.amrBalanceGate.benefit2': 'Beépített SOTA design agent, beállítás nélkül',
   'chat.amrBalanceGate.benefit3': 'Hivatalos, megbízható szolgáltatás',

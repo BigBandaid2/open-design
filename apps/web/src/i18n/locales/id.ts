@@ -14,6 +14,7 @@ export const id: Dict = {
   'chat.amrBalanceGate.title': 'Dapatkan kredit dan terus berkarya',
   'chat.amrBalanceGate.message': 'Kredit tidak cukup. Tingkatkan paket atau isi ulang, dan tugas bisa langsung dimulai.',
   'chat.amrBalanceGate.balanceLabel': 'Saldo saat ini',
+  'chat.amrBalanceGate.benefitsTitle': 'Yang Anda dapatkan dengan Open Design Cloud',
   'chat.amrBalanceGate.benefit1': 'Tanpa API key, banyak model tersedia',
   'chat.amrBalanceGate.benefit2': 'Agen desain SOTA bawaan, tanpa konfigurasi',
   'chat.amrBalanceGate.benefit3': 'Layanan resmi dan tepercaya',

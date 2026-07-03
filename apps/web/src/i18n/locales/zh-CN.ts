@@ -17,6 +17,7 @@ export const zhCN: Dict = {
   "chat.amrBalanceGate.title": "获取额度，继续创作",
   "chat.amrBalanceGate.message": "余额不足，升级套餐或充值后，任务马上就能开始。",
   "chat.amrBalanceGate.balanceLabel": "当前余额",
+  "chat.amrBalanceGate.benefitsTitle": "Open Design Cloud 为你提供",
   "chat.amrBalanceGate.benefit1": "无需 API Key，海量模型任选",
   "chat.amrBalanceGate.benefit2": "自带 SOTA Design Agent，零配置",
   "chat.amrBalanceGate.benefit3": "官方服务，稳定有保障",

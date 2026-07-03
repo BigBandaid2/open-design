@@ -14,6 +14,7 @@ export const ar: Dict = {
   'chat.amrBalanceGate.title': 'احصل على أرصدة وواصل الإبداع',
   'chat.amrBalanceGate.message': 'الرصيد غير كافٍ. قم بترقية الباقة أو الشحن وستبدأ المهمة فورًا.',
   'chat.amrBalanceGate.balanceLabel': 'الرصيد الحالي',
+  'chat.amrBalanceGate.benefitsTitle': 'ما يقدّمه لك Open Design Cloud',
   'chat.amrBalanceGate.benefit1': 'بدون مفاتيح API — تشكيلة واسعة من النماذج',
   'chat.amrBalanceGate.benefit2': 'وكيل تصميم SOTA مدمج، دون أي إعداد',
   'chat.amrBalanceGate.benefit3': 'خدمة رسمية موثوقة',

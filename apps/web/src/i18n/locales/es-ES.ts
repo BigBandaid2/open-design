@@ -14,6 +14,7 @@ export const esES: Dict = {
   'chat.amrBalanceGate.title': 'Consigue créditos y sigue creando',
   'chat.amrBalanceGate.message': 'Créditos insuficientes. Mejora tu plan o recarga y la tarea podrá empezar de inmediato.',
   'chat.amrBalanceGate.balanceLabel': 'Saldo actual',
+  'chat.amrBalanceGate.benefitsTitle': 'Lo que te ofrece Open Design Cloud',
   'chat.amrBalanceGate.benefit1': 'Sin claves API, gran variedad de modelos',
   'chat.amrBalanceGate.benefit2': 'Agente de diseño SOTA integrado, sin configuración',
   'chat.amrBalanceGate.benefit3': 'Servicio oficial y fiable',

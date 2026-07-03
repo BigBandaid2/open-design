@@ -14,6 +14,7 @@ export const tr: Dict = {
   'chat.amrBalanceGate.title': 'Kredi edinin, üretmeye devam edin',
   'chat.amrBalanceGate.message': 'Kredi yetersiz. Planınızı yükseltin veya bakiye yükleyin, görev hemen başlayabilir.',
   'chat.amrBalanceGate.balanceLabel': 'Mevcut bakiye',
+  'chat.amrBalanceGate.benefitsTitle': 'Open Design Cloud size neler sunar',
   'chat.amrBalanceGate.benefit1': 'API anahtarı gerekmez, çok sayıda model',
   'chat.amrBalanceGate.benefit2': 'SOTA tasarım ajanı dahili, kurulum gerekmez',
   'chat.amrBalanceGate.benefit3': 'Resmî ve güvenilir hizmet',

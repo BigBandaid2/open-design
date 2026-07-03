@@ -14,6 +14,7 @@ export const fa: Dict = {
   'chat.amrBalanceGate.title': 'اعتبار بگیرید و به خلق ادامه دهید',
   'chat.amrBalanceGate.message': 'اعتبار کافی نیست. پس از ارتقای طرح یا شارژ، وظیفه بلافاصله شروع می‌شود.',
   'chat.amrBalanceGate.balanceLabel': 'موجودی فعلی',
+  'chat.amrBalanceGate.benefitsTitle': 'آنچه Open Design Cloud به شما می‌دهد',
   'chat.amrBalanceGate.benefit1': 'بدون کلید API، مدل‌های فراوان در دسترس',
   'chat.amrBalanceGate.benefit2': 'ایجنت طراحی SOTA داخلی، بدون پیکربندی',
   'chat.amrBalanceGate.benefit3': 'سرویس رسمی و قابل اعتماد',

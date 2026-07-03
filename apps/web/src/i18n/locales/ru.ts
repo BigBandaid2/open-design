@@ -14,6 +14,7 @@ export const ru: Dict = {
   'chat.amrBalanceGate.title': 'Получите кредиты и продолжайте творить',
   'chat.amrBalanceGate.message': 'Недостаточно кредитов. Улучшите тариф или пополните баланс — и задача сразу запустится.',
   'chat.amrBalanceGate.balanceLabel': 'Текущий баланс',
+  'chat.amrBalanceGate.benefitsTitle': 'Что даёт Open Design Cloud',
   'chat.amrBalanceGate.benefit1': 'Без API-ключей — большой выбор моделей',
   'chat.amrBalanceGate.benefit2': 'Встроенный SOTA-агент для дизайна, без настройки',
   'chat.amrBalanceGate.benefit3': 'Официальный сервис — надёжно',

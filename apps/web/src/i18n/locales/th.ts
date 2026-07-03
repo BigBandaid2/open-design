@@ -14,6 +14,7 @@ export const th: Dict = {
   'chat.amrBalanceGate.title': 'รับเครดิตแล้วสร้างสรรค์ต่อ',
   'chat.amrBalanceGate.message': 'เครดิตไม่พอ อัปเกรดแพ็กเกจหรือเติมเงินแล้วงานจะเริ่มได้ทันที',
   'chat.amrBalanceGate.balanceLabel': 'ยอดเงินปัจจุบัน',
+  'chat.amrBalanceGate.benefitsTitle': 'สิ่งที่คุณได้รับจาก Open Design Cloud',
   'chat.amrBalanceGate.benefit1': 'ไม่ต้องใช้ API Key เลือกใช้ได้หลายโมเดล',
   'chat.amrBalanceGate.benefit2': 'มี Design Agent ระดับ SOTA ในตัว ไม่ต้องตั้งค่า',
   'chat.amrBalanceGate.benefit3': 'บริการทางการ มั่นใจได้',

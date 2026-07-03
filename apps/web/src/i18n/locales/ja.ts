@@ -14,6 +14,7 @@ export const ja: Dict = {
   'chat.amrBalanceGate.title': 'クレジットを追加して創作を続ける',
   'chat.amrBalanceGate.message': 'クレジットが不足しています。プランのアップグレードまたはチャージ後、すぐに開始できます。',
   'chat.amrBalanceGate.balanceLabel': '現在の残高',
+  'chat.amrBalanceGate.benefitsTitle': 'Open Design Cloud で得られるもの',
   'chat.amrBalanceGate.benefit1': 'API キー不要、豊富なモデルを自由に',
   'chat.amrBalanceGate.benefit2': 'SOTA デザインエージェント内蔵、設定不要',
   'chat.amrBalanceGate.benefit3': '公式サービスで安心',
