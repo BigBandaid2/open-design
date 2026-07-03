@@ -17,7 +17,7 @@ export const uk: Dict = {
   'chat.amrBalanceGate.benefit1': 'Без API-ключів — великий вибір моделей',
   'chat.amrBalanceGate.benefit2': 'Вбудований SOTA-агент для дизайну, без налаштувань',
   'chat.amrBalanceGate.benefit3': 'Офіційний сервіс — надійно',
-  'chat.amrBalanceGate.benefit4': 'Постійно розвивається: деплой в 1 клік, мультимодальність, команди',
+  'chat.amrBalanceGate.benefit4': 'Постійно розвивається: деплой в 1 клік, мультимодальність, команди тощо',
   'chat.amrBalanceGate.laterCta': 'Не зараз',
   'chat.amrBalanceGate.plansCta': 'Покращити тариф',
   'chat.amrBalanceGate.signedOutTitle': 'Увійдіть, щоб почати творити',

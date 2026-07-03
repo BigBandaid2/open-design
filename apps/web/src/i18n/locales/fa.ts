@@ -17,7 +17,7 @@ export const fa: Dict = {
   'chat.amrBalanceGate.benefit1': 'بدون کلید API، مدل‌های فراوان در دسترس',
   'chat.amrBalanceGate.benefit2': 'ایجنت طراحی SOTA داخلی، بدون پیکربندی',
   'chat.amrBalanceGate.benefit3': 'سرویس رسمی و قابل اعتماد',
-  'chat.amrBalanceGate.benefit4': 'به‌روزرسانی مداوم: انتشار تک‌کلیکی، چندوجهی، نسخه تیمی',
+  'chat.amrBalanceGate.benefit4': 'به‌روزرسانی مداوم: انتشار تک‌کلیکی، چندوجهی، نسخه تیمی و موارد دیگر',
   'chat.amrBalanceGate.laterCta': 'حالا نه',
   'chat.amrBalanceGate.plansCta': 'ارتقای طرح',
   'chat.amrBalanceGate.signedOutTitle': 'برای شروع خلق وارد شوید',

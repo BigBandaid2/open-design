@@ -20,7 +20,7 @@ export const zhCN: Dict = {
   "chat.amrBalanceGate.benefit1": "无需 API Key，海量模型任选",
   "chat.amrBalanceGate.benefit2": "自带 SOTA Design Agent，零配置",
   "chat.amrBalanceGate.benefit3": "官方服务，稳定有保障",
-  "chat.amrBalanceGate.benefit4": "持续升级：一键部署、多模态、团队版",
+  "chat.amrBalanceGate.benefit4": "持续升级：一键部署、多模态、团队版等",
   "chat.amrBalanceGate.laterCta": "暂不需要",
   "chat.amrBalanceGate.plansCta": "升级套餐",
   "chat.amrBalanceGate.signedOutTitle": "登录 Open Design Cloud，开始创作",

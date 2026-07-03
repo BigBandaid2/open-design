@@ -17,7 +17,7 @@ export const ptBR: Dict = {
   'chat.amrBalanceGate.benefit1': 'Sem chave de API, vários modelos à escolha',
   'chat.amrBalanceGate.benefit2': 'Agente de design SOTA integrado, sem configuração',
   'chat.amrBalanceGate.benefit3': 'Serviço oficial e confiável',
-  'chat.amrBalanceGate.benefit4': 'Sempre evoluindo: deploy em 1 clique, multimodal, equipes',
+  'chat.amrBalanceGate.benefit4': 'Sempre evoluindo: deploy em 1 clique, multimodal, equipes e mais',
   'chat.amrBalanceGate.laterCta': 'Agora não',
   'chat.amrBalanceGate.plansCta': 'Fazer upgrade',
   'chat.amrBalanceGate.signedOutTitle': 'Entre para começar a criar',

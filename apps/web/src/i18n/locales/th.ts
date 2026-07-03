@@ -17,7 +17,7 @@ export const th: Dict = {
   'chat.amrBalanceGate.benefit1': 'ไม่ต้องใช้ API Key เลือกใช้ได้หลายโมเดล',
   'chat.amrBalanceGate.benefit2': 'มี Design Agent ระดับ SOTA ในตัว ไม่ต้องตั้งค่า',
   'chat.amrBalanceGate.benefit3': 'บริการทางการ มั่นใจได้',
-  'chat.amrBalanceGate.benefit4': 'พัฒนาต่อเนื่อง: ดีพลอยคลิกเดียว มัลติโมดัล ทีม',
+  'chat.amrBalanceGate.benefit4': 'พัฒนาต่อเนื่อง: ดีพลอยคลิกเดียว มัลติโมดัล ทีม และอื่น ๆ',
   'chat.amrBalanceGate.laterCta': 'ไว้ทีหลัง',
   'chat.amrBalanceGate.plansCta': 'อัปเกรดแพ็กเกจ',
   'chat.amrBalanceGate.signedOutTitle': 'ลงชื่อเข้าใช้เพื่อเริ่มสร้างสรรค์',

@@ -17,7 +17,7 @@ export const tr: Dict = {
   'chat.amrBalanceGate.benefit1': 'API anahtarı gerekmez, çok sayıda model',
   'chat.amrBalanceGate.benefit2': 'SOTA tasarım ajanı dahili, kurulum gerekmez',
   'chat.amrBalanceGate.benefit3': 'Resmî ve güvenilir hizmet',
-  'chat.amrBalanceGate.benefit4': 'Sürekli gelişiyor: tek tıkla yayınlama, çok modlu, ekipler',
+  'chat.amrBalanceGate.benefit4': 'Sürekli gelişiyor: tek tıkla yayınlama, çok modlu, ekipler ve dahası',
   'chat.amrBalanceGate.laterCta': 'Şimdi değil',
   'chat.amrBalanceGate.plansCta': 'Planı yükselt',
   'chat.amrBalanceGate.signedOutTitle': 'Oturum açın, üretmeye başlayın',

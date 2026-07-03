@@ -17,7 +17,7 @@ export const ko: Dict = {
   'chat.amrBalanceGate.benefit1': 'API 키 없이 다양한 모델 사용',
   'chat.amrBalanceGate.benefit2': 'SOTA 디자인 에이전트 내장, 설정 불필요',
   'chat.amrBalanceGate.benefit3': '신뢰할 수 있는 공식 서비스',
-  'chat.amrBalanceGate.benefit4': '계속 진화: 원클릭 배포·멀티모달·팀 버전',
+  'chat.amrBalanceGate.benefit4': '계속 진화: 원클릭 배포·멀티모달·팀 버전 등',
   'chat.amrBalanceGate.laterCta': '나중에',
   'chat.amrBalanceGate.plansCta': '요금제 업그레이드',
   'chat.amrBalanceGate.signedOutTitle': '로그인하고 창작 시작하기',

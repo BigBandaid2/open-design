@@ -17,7 +17,7 @@ export const id: Dict = {
   'chat.amrBalanceGate.benefit1': 'Tanpa API key, banyak model tersedia',
   'chat.amrBalanceGate.benefit2': 'Agen desain SOTA bawaan, tanpa konfigurasi',
   'chat.amrBalanceGate.benefit3': 'Layanan resmi dan tepercaya',
-  'chat.amrBalanceGate.benefit4': 'Terus berkembang: deploy sekali klik, multimodal, tim',
+  'chat.amrBalanceGate.benefit4': 'Terus berkembang: deploy sekali klik, multimodal, tim, dan lainnya',
   'chat.amrBalanceGate.laterCta': 'Nanti saja',
   'chat.amrBalanceGate.plansCta': 'Tingkatkan paket',
   'chat.amrBalanceGate.signedOutTitle': 'Masuk untuk mulai berkarya',

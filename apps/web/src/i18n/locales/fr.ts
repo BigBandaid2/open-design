@@ -17,7 +17,7 @@ export const fr: Dict = {
   'chat.amrBalanceGate.benefit1': 'Sans clé API — un large choix de modèles',
   'chat.amrBalanceGate.benefit2': 'Agent de design SOTA intégré, zéro configuration',
   'chat.amrBalanceGate.benefit3': 'Service officiel, fiable',
-  'chat.amrBalanceGate.benefit4': 'En constante évolution : déploiement 1 clic, multimodal, équipes',
+  'chat.amrBalanceGate.benefit4': 'En constante évolution : déploiement 1 clic, multimodal, équipes, etc.',
   'chat.amrBalanceGate.laterCta': 'Pas maintenant',
   'chat.amrBalanceGate.plansCta': 'Mettre à niveau',
   'chat.amrBalanceGate.signedOutTitle': 'Connectez-vous pour commencer à créer',

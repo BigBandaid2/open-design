@@ -17,7 +17,7 @@ export const ja: Dict = {
   'chat.amrBalanceGate.benefit1': 'API キー不要、豊富なモデルを自由に',
   'chat.amrBalanceGate.benefit2': 'SOTA デザインエージェント内蔵、設定不要',
   'chat.amrBalanceGate.benefit3': '公式サービスで安心',
-  'chat.amrBalanceGate.benefit4': '進化し続ける：ワンクリック公開・マルチモーダル・チーム版',
+  'chat.amrBalanceGate.benefit4': '進化し続ける：ワンクリック公開・マルチモーダル・チーム版など',
   'chat.amrBalanceGate.laterCta': '今はしない',
   'chat.amrBalanceGate.plansCta': 'プランをアップグレード',
   'chat.amrBalanceGate.signedOutTitle': 'サインインして創作を始める',

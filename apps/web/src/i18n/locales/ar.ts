@@ -17,7 +17,7 @@ export const ar: Dict = {
   'chat.amrBalanceGate.benefit1': 'بدون مفاتيح API — تشكيلة واسعة من النماذج',
   'chat.amrBalanceGate.benefit2': 'وكيل تصميم SOTA مدمج، دون أي إعداد',
   'chat.amrBalanceGate.benefit3': 'خدمة رسمية موثوقة',
-  'chat.amrBalanceGate.benefit4': 'يتطور باستمرار: نشر بنقرة واحدة، وسائط متعددة، فرق عمل',
+  'chat.amrBalanceGate.benefit4': 'يتطور باستمرار: نشر بنقرة واحدة، وسائط متعددة، فرق عمل والمزيد',
   'chat.amrBalanceGate.laterCta': 'ليس الآن',
   'chat.amrBalanceGate.plansCta': 'ترقية الباقة',
   'chat.amrBalanceGate.signedOutTitle': 'سجّل الدخول لبدء الإبداع',

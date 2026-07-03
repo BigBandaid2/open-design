@@ -17,7 +17,7 @@ export const hu: Dict = {
   'chat.amrBalanceGate.benefit1': 'API-kulcs nélkül, rengeteg modell',
   'chat.amrBalanceGate.benefit2': 'Beépített SOTA design agent, beállítás nélkül',
   'chat.amrBalanceGate.benefit3': 'Hivatalos, megbízható szolgáltatás',
-  'chat.amrBalanceGate.benefit4': 'Folyamatosan bővül: egykattintásos publikálás, multimodális, csapatok',
+  'chat.amrBalanceGate.benefit4': 'Folyamatosan bővül: egykattintásos publikálás, multimodális, csapatok és még több',
   'chat.amrBalanceGate.laterCta': 'Most nem',
   'chat.amrBalanceGate.plansCta': 'Csomagváltás',
   'chat.amrBalanceGate.signedOutTitle': 'Jelentkezz be és kezdj alkotni',
