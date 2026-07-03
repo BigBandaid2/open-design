@@ -167,6 +167,8 @@ export type TrackingAmrEntrySource =
   | 'handoff_amr_website'
   | 'chat_error_authorize_retry'
   | 'chat_error_recharge'
+  | 'chat_balance_gate_upgrade'
+  | 'home_balance_gate_upgrade'
   | 'chat_error_switch_retry_card'
   | 'generation_preview_authorize_retry'
   | 'generation_preview_recharge'

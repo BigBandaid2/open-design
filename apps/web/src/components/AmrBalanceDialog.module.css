@@ -1,0 +1,141 @@
+/* Subscription-invitation styling for the pre-run balance gate. Centered
+ * card, warm accent halo, benefit stagger — an unlock moment, not an error.
+ * The shared Dialog chrome supplies the backdrop, elevation, and the
+ * 220ms pop-in (scale 0.97 + opacity, custom cubic-bezier). */
+
+.panel {
+  width: 400px;
+  align-items: center;
+  text-align: center;
+  padding: 32px 28px 20px;
+  gap: 0;
+}
+
+.iconBadge {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--accent);
+  background: var(--accent-tint);
+  /* Soft halo ring so the badge reads as a glow, not a flat chip. */
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent-tint) 45%, transparent);
+  margin-bottom: 18px;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+}
+
+.message {
+  margin: 0 0 12px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-wrap: balance;
+}
+
+/* Current-balance badge: visible enough to explain WHY the gate fired,
+ * placed with the message (state context) rather than buried at the bottom. */
+.balancePill {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 18px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.benefits {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: start;
+  border-radius: var(--radius);
+  background: var(--bg-subtle);
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text);
+  /* Rare dialog → a light cascade adds delight without slowing anyone down. */
+  opacity: 0;
+  transform: translateY(4px);
+  animation: amr-gate-benefit-in 240ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.benefit:nth-child(1) { animation-delay: 60ms; }
+.benefit:nth-child(2) { animation-delay: 100ms; }
+.benefit:nth-child(3) { animation-delay: 140ms; }
+.benefit:nth-child(4) { animation-delay: 180ms; }
+
+@keyframes amr-gate-benefit-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.benefitIcon {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  border-radius: 50%;
+  color: var(--accent);
+  background: var(--accent-tint);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.cta {
+  width: 100%;
+  height: 38px;
+  font-size: 13.5px;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cta:active {
+  transform: scale(0.98);
+}
+
+/* Quiet text button: the bordered ghost chrome would compete with the CTA.
+ * Scoped under .actions to outrank the shared Button variant class. */
+.actions .later {
+  width: 100%;
+  color: var(--text-muted);
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .benefit {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

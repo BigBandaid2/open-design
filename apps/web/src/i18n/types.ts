@@ -2395,6 +2395,15 @@ export interface Dict {
   'chat.amrError.balanceMessage': string;
   'chat.amrError.authorizeCta': string;
   'chat.amrError.rechargeCta': string;
+  'chat.amrBalanceGate.title': string;
+  'chat.amrBalanceGate.message': string;
+  'chat.amrBalanceGate.balanceLabel': string;
+  'chat.amrBalanceGate.benefit1': string;
+  'chat.amrBalanceGate.benefit2': string;
+  'chat.amrBalanceGate.benefit3': string;
+  'chat.amrBalanceGate.benefit4': string;
+  'chat.amrBalanceGate.laterCta': string;
+  'chat.amrBalanceGate.plansCta': string;
   'chat.antigravityError.launchTerminalCta': string;
   'chat.antigravityError.launchSwitchModelCta': string;
   'chat.connectionDropped': string;

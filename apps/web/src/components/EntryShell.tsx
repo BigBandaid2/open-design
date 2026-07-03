@@ -23,6 +23,7 @@ import {
 import {
   defaultScenarioPluginIdForProjectMetadata,
   PROFILE_MEMORY_ID,
+  type AmrWalletSnapshot,
   type ChatSessionMode,
   type ConnectorDetail,
   type InstalledPluginRecord,
@@ -94,6 +95,8 @@ import { BrandsTab } from './BrandsTab';
 import { EntryNavRail, type EntryView as EntryViewKind } from './EntryNavRail';
 import { LibrarySection } from './LibrarySection';
 import { UpdaterPopup } from './UpdaterPopup';
+import { AmrBalanceDialog } from './AmrBalanceDialog';
+import { checkAmrBalanceGate } from '../runtime/amr-balance-gate';
 import { GithubStarBadge } from './GithubStarBadge';
 import {
   formatDiscordPresenceCount,
@@ -503,6 +506,10 @@ export function EntryShell({
   const route = useRoute();
   const view: EntryViewKind = route.kind === 'home' ? route.view : 'home';
   const [newProjectOpen, setNewProjectOpen] = useState(false);
+  // Wallet snapshot that blocked a home submit (pre-run AMR balance gate);
+  // non-null renders the AmrBalanceDialog on the home page — the project is
+  // never created, so the composer draft stays put. See checkAmrBalanceGate.
+  const [amrBalanceGateSnapshot, setAmrBalanceGateSnapshot] = useState<AmrWalletSnapshot | null>(null);
   useEffect(() => {
     if (view !== 'design-systems') return;
     void onDesignSystemsRefresh?.();
@@ -639,7 +646,18 @@ export function EntryShell({
   // submits now arrive with the hidden od-default router plugin and
   // projectKind='other', so the agent asks for the exact task type
   // before continuing.
-  function handlePluginLoopSubmit(payload: PluginLoopSubmit) {
+  async function handlePluginLoopSubmit(payload: PluginLoopSubmit) {
+    // AMR pre-run balance gate: a definitively empty wallet blocks the home
+    // submit BEFORE the project is created, so the dialog appears right here
+    // on the home page and the composer keeps its draft. In-project sends are
+    // gated separately in ProjectView.handleSend.
+    if (config.mode === 'daemon' && config.agentId === 'amr') {
+      const gate = await checkAmrBalanceGate();
+      if (gate.blocked) {
+        setAmrBalanceGateSnapshot(gate.snapshot);
+        return 'blocked' as const;
+      }
+    }
     const summarizedName = summarizeProjectNameFromPrompt(payload.prompt);
     const head = payload.prompt.trim().split(/\s+/).slice(0, 8).join(' ');
     const firstAttachmentName = payload.attachments?.[0]?.name ?? '';
@@ -897,6 +915,16 @@ export function EntryShell({
             </div>
             <UpdaterPopup />
             {avatarMenu}
+            {amrBalanceGateSnapshot ? (
+              <AmrBalanceDialog
+                balanceUsd={amrBalanceGateSnapshot.balanceUsd}
+                profile={amrBalanceGateSnapshot.profile}
+                entrySource="home_balance_gate_upgrade"
+                metricsConsent={config.telemetry?.metrics === true}
+                installationId={config.installationId}
+                onClose={() => setAmrBalanceGateSnapshot(null)}
+              />
+            ) : null}
           </div>
           <div
             className={`entry-main__inner${
