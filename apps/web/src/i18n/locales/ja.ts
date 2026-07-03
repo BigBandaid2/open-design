@@ -25,7 +25,7 @@ export const ja: Dict = {
   'chat.amrLowBalance.message': '残高はあと {balance} です。クレジット不足でタスクが途中で失敗する可能性があります。中断を避けるには、チャージまたはプランのアップグレードをおすすめします。',
   'chat.amrLowBalance.rechargeCta': 'チャージする',
   'chat.amrLowBalance.proceedCta': 'このまま開始',
-  'chat.amrLowBalance.dontRemind': '今後表示しない',
+  'chat.amrLowBalance.dontRemind': '今後確認しない',
   'chat.antigravityError.launchTerminalCta': 'ターミナルでサインイン',
   'chat.antigravityError.launchSwitchModelCta': 'ターミナルでモデルを切り替え',
   'chat.connectionDropped': '応答が完了する前にモデルサービスへの接続が切断されました。多くはネットワークやプロキシの不安定が原因です。再試行してください。',

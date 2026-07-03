@@ -25,7 +25,7 @@ export const ko: Dict = {
   'chat.amrLowBalance.message': '잔액이 {balance}만 남았습니다. 크레딧 부족으로 작업이 중간에 실패할 수 있으니, 중단을 피하려면 충전하거나 요금제를 업그레이드하세요.',
   'chat.amrLowBalance.rechargeCta': '충전하기',
   'chat.amrLowBalance.proceedCta': '그래도 시작',
-  'chat.amrLowBalance.dontRemind': '다시 알리지 않기',
+  'chat.amrLowBalance.dontRemind': '다시 묻지 않기',
   'chat.antigravityError.launchTerminalCta': '터미널에서 로그인',
   'chat.antigravityError.launchSwitchModelCta': '터미널에서 모델 전환',
   'chat.connectionDropped': '응답이 끝나기 전에 모델 서비스 연결이 끊겼습니다. 대개 불안정한 네트워크나 프록시가 원인입니다. 다시 시도해 주세요.',

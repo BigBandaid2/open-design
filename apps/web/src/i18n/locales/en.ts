@@ -25,7 +25,7 @@ export const en: Dict = {
   'chat.amrLowBalance.message': 'Only {balance} left. This task may fail partway when credits run out — top up or upgrade your plan to avoid interruption.',
   'chat.amrLowBalance.rechargeCta': 'Top up',
   'chat.amrLowBalance.proceedCta': 'Start anyway',
-  'chat.amrLowBalance.dontRemind': 'Don\'t remind me again',
+  'chat.amrLowBalance.dontRemind': 'Don\'t ask again',
   'chat.antigravityError.launchTerminalCta': 'Sign in via terminal',
   'chat.antigravityError.launchSwitchModelCta': 'Switch model in terminal',
   'chat.connectionDropped': 'The connection to the model service dropped before the response finished — usually an unstable network or proxy. Please retry.',

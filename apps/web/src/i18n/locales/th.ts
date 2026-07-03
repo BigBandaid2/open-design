@@ -25,7 +25,7 @@ export const th: Dict = {
   'chat.amrLowBalance.message': 'เหลือเพียง {balance} งานนี้อาจล้มเหลวกลางคันเมื่อเครดิตหมด — เติมเงินหรืออัปเกรดแพ็กเกจเพื่อเลี่ยงการหยุดชะงัก',
   'chat.amrLowBalance.rechargeCta': 'เติมเงิน',
   'chat.amrLowBalance.proceedCta': 'เริ่มต่อไป',
-  'chat.amrLowBalance.dontRemind': 'ไม่ต้องเตือนอีก',
+  'chat.amrLowBalance.dontRemind': 'ไม่ต้องถามอีก',
   'chat.antigravityError.launchTerminalCta': 'ลงชื่อเข้าใช้ผ่านเทอร์มินัล',
   'chat.antigravityError.launchSwitchModelCta': 'สลับโมเดลในเทอร์มินัล',
   'chat.connectionDropped': 'การเชื่อมต่อกับบริการโมเดลหลุดก่อนที่การตอบกลับจะเสร็จสิ้น — มักเกิดจากเครือข่ายหรือพร็อกซีที่ไม่เสถียร โปรดลองอีกครั้ง',

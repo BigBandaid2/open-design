@@ -25,7 +25,7 @@ export const pl: Dict = {
   'chat.amrLowBalance.message': 'Zostało tylko {balance}. To zadanie może się nie powieść w połowie, gdy kredyty się skończą — doładuj lub ulepsz plan, aby uniknąć przerwania.',
   'chat.amrLowBalance.rechargeCta': 'Doładuj',
   'chat.amrLowBalance.proceedCta': 'Uruchom mimo to',
-  'chat.amrLowBalance.dontRemind': 'Nie przypominaj więcej',
+  'chat.amrLowBalance.dontRemind': 'Nie pytaj ponownie',
   'chat.antigravityError.launchTerminalCta': 'Zaloguj się przez terminal',
   'chat.antigravityError.launchSwitchModelCta': 'Zmień model w terminalu',
   'chat.connectionDropped': 'Połączenie z usługą modelu zostało przerwane przed zakończeniem odpowiedzi — zwykle z powodu niestabilnej sieci lub serwera proxy. Spróbuj ponownie.',

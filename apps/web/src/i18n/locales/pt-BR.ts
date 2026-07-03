@@ -25,7 +25,7 @@ export const ptBR: Dict = {
   'chat.amrLowBalance.message': 'Restam apenas {balance}. Esta tarefa pode falhar no meio se os créditos acabarem — recarregue ou faça upgrade do plano para evitar interrupções.',
   'chat.amrLowBalance.rechargeCta': 'Recarregar',
   'chat.amrLowBalance.proceedCta': 'Iniciar mesmo assim',
-  'chat.amrLowBalance.dontRemind': 'Não lembrar novamente',
+  'chat.amrLowBalance.dontRemind': 'Não perguntar novamente',
   'chat.antigravityError.launchTerminalCta': 'Entrar pelo terminal',
   'chat.antigravityError.launchSwitchModelCta': 'Alternar modelo no terminal',
   'chat.connectionDropped': 'A conexão com o serviço do modelo caiu antes de a resposta terminar — geralmente uma rede ou proxy instável. Tente novamente.',

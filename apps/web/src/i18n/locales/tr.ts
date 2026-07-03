@@ -25,7 +25,7 @@ export const tr: Dict = {
   'chat.amrLowBalance.message': 'Yalnızca {balance} kaldı. Krediler biterse bu görev yarıda başarısız olabilir — kesintiyi önlemek için bakiye yükleyin veya planınızı yükseltin.',
   'chat.amrLowBalance.rechargeCta': 'Bakiye yükle',
   'chat.amrLowBalance.proceedCta': 'Yine de başlat',
-  'chat.amrLowBalance.dontRemind': 'Bir daha hatırlatma',
+  'chat.amrLowBalance.dontRemind': 'Bir daha sorma',
   'chat.antigravityError.launchTerminalCta': 'Terminal üzerinden giriş yap',
   'chat.antigravityError.launchSwitchModelCta': 'Terminalde modeli değiştir',
   'chat.connectionDropped': 'Yanıt tamamlanmadan model hizmetiyle bağlantı koptu — genellikle kararsız bir ağ veya proxy nedeniyle. Lütfen yeniden deneyin.',

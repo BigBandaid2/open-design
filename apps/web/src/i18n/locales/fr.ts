@@ -25,7 +25,7 @@ export const fr: Dict = {
   'chat.amrLowBalance.message': 'Il ne reste que {balance}. Cette tâche risque d’échouer en cours de route faute de crédits — rechargez ou passez à une offre supérieure pour éviter l’interruption.',
   'chat.amrLowBalance.rechargeCta': 'Recharger',
   'chat.amrLowBalance.proceedCta': 'Lancer quand même',
-  'chat.amrLowBalance.dontRemind': 'Ne plus me rappeler',
+  'chat.amrLowBalance.dontRemind': 'Ne plus demander',
   'chat.antigravityError.launchTerminalCta': 'Se connecter via le terminal',
   'chat.antigravityError.launchSwitchModelCta': 'Changer de modèle dans le terminal',
   'chat.connectionDropped': 'La connexion au service de modèle a été interrompue avant la fin de la réponse — généralement un réseau ou un proxy instable. Veuillez réessayer.',

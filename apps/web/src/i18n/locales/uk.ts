@@ -25,7 +25,7 @@ export const uk: Dict = {
   'chat.amrLowBalance.message': 'Залишилося лише {balance}. Завдання може перерватися на середині, коли кредити скінчаться — поповніть баланс або покращте тариф, щоб уникнути переривання.',
   'chat.amrLowBalance.rechargeCta': 'Поповнити',
   'chat.amrLowBalance.proceedCta': 'Все одно запустити',
-  'chat.amrLowBalance.dontRemind': 'Більше не нагадувати',
+  'chat.amrLowBalance.dontRemind': 'Більше не питати',
   'chat.antigravityError.launchTerminalCta': 'Увійти через термінал',
   'chat.antigravityError.launchSwitchModelCta': 'Змінити модель у терміналі',
   'chat.connectionDropped': 'З’єднання зі службою моделі обірвалося до завершення відповіді — зазвичай через нестабільну мережу або проксі. Повторіть спробу.',

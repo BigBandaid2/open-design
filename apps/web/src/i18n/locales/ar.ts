@@ -25,7 +25,7 @@ export const ar: Dict = {
   'chat.amrLowBalance.message': 'لم يتبقَّ سوى {balance}. قد تفشل هذه المهمة في منتصفها عند نفاد الرصيد — اشحن أو قم بترقية باقتك لتجنّب الانقطاع.',
   'chat.amrLowBalance.rechargeCta': 'اشحن الرصيد',
   'chat.amrLowBalance.proceedCta': 'ابدأ على أي حال',
-  'chat.amrLowBalance.dontRemind': 'لا تذكّرني مجددًا',
+  'chat.amrLowBalance.dontRemind': 'لا تسأل مجددًا',
   'chat.antigravityError.launchTerminalCta': 'تسجيل الدخول عبر الطرفية',
   'chat.antigravityError.launchSwitchModelCta': 'تبديل النموذج في الطرفية',
   'chat.connectionDropped': 'انقطع الاتصال بخدمة النموذج قبل اكتمال الاستجابة — عادةً بسبب شبكة أو وكيل (proxy) غير مستقر. يرجى إعادة المحاولة.',

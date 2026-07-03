@@ -88,27 +88,29 @@ export function AmrLowBalanceDialog({
       <p className={styles.message}>
         {t('chat.amrLowBalance.message', { balance: formattedBalance })}
       </p>
-      <div className={styles.actions}>
-        <Button
-          variant="primary"
-          className={styles.cta}
-          onClick={openWalletAndPark}
-          data-testid="amr-low-balance-dialog-recharge"
-        >
-          {t('chat.amrLowBalance.rechargeCta')}
-        </Button>
-        <Button
-          className={styles.proceed}
-          onClick={() => decide('proceed')}
-          data-testid="amr-low-balance-dialog-proceed"
-        >
-          {t('chat.amrLowBalance.proceedCta')}
-        </Button>
+      {/* Canonical suppression-dialog footer (macOS alerts, VS Code, JetBrains):
+          the "don't ask again" checkbox sits bottom-left as a quiet meta
+          option, the actions sit bottom-right in one row with the primary
+          outermost. */}
+      <div className={styles.footer}>
+        <label className={styles.optOut}>
+          <input ref={optOutRef} type="checkbox" data-testid="amr-low-balance-dialog-optout" />
+          {t('chat.amrLowBalance.dontRemind')}
+        </label>
+        <div className={styles.footerActions}>
+          <Button onClick={() => decide('proceed')} data-testid="amr-low-balance-dialog-proceed">
+            {t('chat.amrLowBalance.proceedCta')}
+          </Button>
+          <Button
+            variant="primary"
+            className={styles.cta}
+            onClick={openWalletAndPark}
+            data-testid="amr-low-balance-dialog-recharge"
+          >
+            {t('chat.amrLowBalance.rechargeCta')}
+          </Button>
+        </div>
       </div>
-      <label className={styles.optOut}>
-        <input ref={optOutRef} type="checkbox" data-testid="amr-low-balance-dialog-optout" />
-        {t('chat.amrLowBalance.dontRemind')}
-      </label>
     </Dialog>
   );
   if (typeof document === 'undefined') return dialog;

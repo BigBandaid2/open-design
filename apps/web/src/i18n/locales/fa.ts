@@ -25,7 +25,7 @@ export const fa: Dict = {
   'chat.amrLowBalance.message': 'فقط {balance} باقی مانده است. این وظیفه ممکن است در میانه راه با اتمام اعتبار شکست بخورد — برای جلوگیری از قطع شدن، شارژ کنید یا طرح خود را ارتقا دهید.',
   'chat.amrLowBalance.rechargeCta': 'شارژ کنید',
   'chat.amrLowBalance.proceedCta': 'به هر حال شروع کن',
-  'chat.amrLowBalance.dontRemind': 'دیگر یادآوری نکن',
+  'chat.amrLowBalance.dontRemind': 'دیگر نپرس',
   'chat.antigravityError.launchTerminalCta': 'ورود از طریق ترمینال',
   'chat.antigravityError.launchSwitchModelCta': 'تغییر مدل در ترمینال',
   'chat.connectionDropped': 'اتصال به سرویس مدل پیش از پایان پاسخ قطع شد — معمولاً به دلیل شبکه یا پراکسی ناپایدار. لطفاً دوباره تلاش کنید.',

@@ -25,7 +25,7 @@ export const de: Dict = {
   'chat.amrLowBalance.message': 'Nur noch {balance} übrig. Diese Aufgabe kann unterwegs fehlschlagen, wenn das Guthaben ausgeht — lade auf oder upgrade deinen Plan, um Unterbrechungen zu vermeiden.',
   'chat.amrLowBalance.rechargeCta': 'Aufladen',
   'chat.amrLowBalance.proceedCta': 'Trotzdem starten',
-  'chat.amrLowBalance.dontRemind': 'Nicht mehr erinnern',
+  'chat.amrLowBalance.dontRemind': 'Nicht mehr fragen',
   'chat.antigravityError.launchTerminalCta': 'Über Terminal anmelden',
   'chat.antigravityError.launchSwitchModelCta': 'Modell im Terminal wechseln',
   'chat.connectionDropped': 'Die Verbindung zum Modelldienst wurde vor dem Ende der Antwort unterbrochen – meist ein instabiles Netzwerk oder ein Proxy. Bitte erneut versuchen.',

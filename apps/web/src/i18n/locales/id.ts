@@ -25,7 +25,7 @@ export const id: Dict = {
   'chat.amrLowBalance.message': 'Hanya tersisa {balance}. Tugas ini bisa gagal di tengah jalan saat kredit habis — isi ulang atau tingkatkan paket untuk menghindari gangguan.',
   'chat.amrLowBalance.rechargeCta': 'Isi ulang',
   'chat.amrLowBalance.proceedCta': 'Tetap mulai',
-  'chat.amrLowBalance.dontRemind': 'Jangan ingatkan lagi',
+  'chat.amrLowBalance.dontRemind': 'Jangan tanya lagi',
   'chat.antigravityError.launchTerminalCta': 'Masuk melalui terminal',
   'chat.antigravityError.launchSwitchModelCta': 'Ganti model di terminal',
   'chat.connectionDropped': 'Koneksi ke layanan model terputus sebelum respons selesai — biasanya karena jaringan atau proxy yang tidak stabil. Silakan coba lagi.',

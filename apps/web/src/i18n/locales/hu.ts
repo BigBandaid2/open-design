@@ -25,7 +25,7 @@ export const hu: Dict = {
   'chat.amrLowBalance.message': 'Már csak {balance} maradt. A feladat félúton megszakadhat, ha elfogy a keret — tölts fel vagy válts nagyobb csomagra a megszakítás elkerüléséhez.',
   'chat.amrLowBalance.rechargeCta': 'Feltöltés',
   'chat.amrLowBalance.proceedCta': 'Indítás mégis',
-  'chat.amrLowBalance.dontRemind': 'Ne emlékeztess többé',
+  'chat.amrLowBalance.dontRemind': 'Ne kérdezze többé',
   'chat.antigravityError.launchTerminalCta': 'Bejelentkezés terminálon keresztül',
   'chat.antigravityError.launchSwitchModelCta': 'Modellváltás a terminálban',
   'chat.connectionDropped': 'A modellszolgáltatáshoz való kapcsolat megszakadt a válasz befejezése előtt – általában instabil hálózat vagy proxy miatt. Kérjük, próbáld újra.',

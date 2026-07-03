@@ -25,7 +25,7 @@ export const it: Dict = {
   'chat.amrLowBalance.message': 'Restano solo {balance}. Questa attività potrebbe fallire a metà se i crediti si esauriscono: ricarica o passa a un piano superiore per evitare interruzioni.',
   'chat.amrLowBalance.rechargeCta': 'Ricarica',
   'chat.amrLowBalance.proceedCta': 'Avvia comunque',
-  'chat.amrLowBalance.dontRemind': 'Non ricordarmelo più',
+  'chat.amrLowBalance.dontRemind': 'Non chiedere più',
   'chat.antigravityError.launchTerminalCta': 'Accedi tramite terminale',
   'chat.antigravityError.launchSwitchModelCta': 'Cambia modello nel terminale',
   'chat.connectionDropped': 'La connessione al servizio del modello è caduta prima del completamento della risposta, di solito a causa di una rete o di un proxy instabili. Riprova.',
