@@ -669,15 +669,15 @@ describe('ProjectView conversation run isolation', () => {
     );
   });
 
-  it('blocks the AMR send and shows the balance dialog when the wallet is insufficient', async () => {
+  it('hard-blocks the AMR send and shows the balance dialog when the wallet is empty', async () => {
     conversationAMessages = [];
-    // Both the cached read and the refresh confirmation report a balance at
-    // the gate threshold, so the send must be blocked before any run spawns.
+    // Both the cached read and the refresh confirmation report an empty
+    // wallet, so the send must be hard-blocked before any run spawns.
     fetchAmrWalletSnapshot.mockResolvedValue({
       status: 'available',
       profile: 'prod',
       user: null,
-      balanceUsd: '0.05',
+      balanceUsd: '0',
       updatedAt: null,
       fetchedAt: '2026-07-02T00:00:00.000Z',
       stale: false,
@@ -704,6 +704,49 @@ describe('ProjectView conversation run isolation', () => {
 
     await waitFor(() => expect(screen.getByTestId('amr-balance-dialog')).toBeTruthy());
     expect(streamViaDaemon).not.toHaveBeenCalled();
+  });
+
+  it('soft-warns on a low AMR wallet and proceeds with the same send on confirmation', async () => {
+    conversationAMessages = [];
+    fetchAmrWalletSnapshot.mockResolvedValue({
+      status: 'available',
+      profile: 'prod',
+      user: null,
+      balanceUsd: '3.00',
+      updatedAt: null,
+      fetchedAt: '2026-07-02T00:00:00.000Z',
+      stale: false,
+      source: 'vela_api',
+    });
+    renderProjectView(
+      { ...config, agentId: 'amr' },
+      project,
+      [
+        {
+          id: 'amr',
+          name: 'AMR',
+          bin: 'amr',
+          available: true,
+          models: [{ id: 'glm-5', label: 'GLM 5' }],
+        },
+      ],
+    );
+
+    await waitFor(() => expect(screen.getByTestId('active-conversation').textContent).toBe('conv-a'));
+    await waitFor(() => expect(screen.getByTestId('send-message')).toHaveProperty('disabled', false));
+
+    fireEvent.click(screen.getByTestId('send-message'));
+
+    // The reminder holds the send: no run yet.
+    await waitFor(() => expect(screen.getByTestId('amr-low-balance-dialog')).toBeTruthy());
+    expect(streamViaDaemon).not.toHaveBeenCalled();
+
+    // "Start anyway" resolves the pending send — the run starts without a re-submit.
+    fireEvent.click(screen.getByTestId('amr-low-balance-dialog-proceed'));
+    await waitFor(() => expect(streamViaDaemon).toHaveBeenCalledTimes(1));
+    expect(streamViaDaemon).toHaveBeenCalledWith(
+      expect.objectContaining({ agentId: 'amr' }),
+    );
   });
 
   it('does not create duplicate empty conversations while a fresh conversation is loading', async () => {

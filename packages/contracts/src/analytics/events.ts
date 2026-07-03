@@ -169,6 +169,8 @@ export type TrackingAmrEntrySource =
   | 'chat_error_recharge'
   | 'chat_balance_gate_upgrade'
   | 'home_balance_gate_upgrade'
+  | 'chat_low_balance_warn_recharge'
+  | 'home_low_balance_warn_recharge'
   | 'chat_error_switch_retry_card'
   | 'generation_preview_authorize_retry'
   | 'generation_preview_recharge'

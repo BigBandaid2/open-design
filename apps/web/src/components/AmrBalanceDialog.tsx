@@ -8,15 +8,17 @@ import {
   attributedAmrUrl,
   recordAmrEntry,
 } from '../analytics/amr-attribution';
-import { amrPlansUrlForProfile } from '../runtime/amr-guidance';
+import { amrConsoleUrlForProfile } from '../runtime/amr-guidance';
 import { formatVelaBalanceUsd } from '../providers/daemon';
 import { Icon } from './Icon';
 import styles from './AmrBalanceDialog.module.css';
 
 interface Props {
-  /** Raw wallet balance string from the blocking snapshot; null hides the caption. */
+  /** Why the send was hard-blocked: empty wallet, or not signed in at all. */
+  reason: 'insufficient' | 'signed_out';
+  /** Raw wallet balance string from the blocking snapshot; null hides the badge. */
   balanceUsd: string | null;
-  /** Open Design Cloud profile from the blocking snapshot; picks the plans origin. */
+  /** Open Design Cloud profile from the blocking snapshot; picks the console origin. */
   profile: string | null;
   /** Which surface blocked the send — keys the amr_entry attribution. */
   entrySource: 'home_balance_gate_upgrade' | 'chat_balance_gate_upgrade';
@@ -25,18 +27,25 @@ interface Props {
   onClose: () => void;
 }
 
-// Subscription invitation shown when an Open Design Cloud task is blocked by
-// an empty wallet (see checkAmrBalanceGate). It fires at the moment of PEAK
-// intent — the user just wrote a task and pressed send — so it must read as
-// "one step from starting", never as an error:
+// HARD pre-run blocker for Open Design Cloud tasks: the run cannot possibly
+// succeed (empty wallet or signed out), so the send is stopped BEFORE any run
+// spawns — unlike the post-failure AMR_INSUFFICIENT_BALANCE error card which
+// appears after a run already burned its startup. It fires at the moment of
+// PEAK intent — the user just wrote a task and pressed send — so it must read
+// as "one step from starting", never as an error:
 //   - the title sells the outcome (keep creating), not the problem;
 //   - three short benefits lower the subscription hesitation;
-//   - one full-width CTA to the plans view; dismissal is a quiet text button;
+//   - one full-width CTA opens the console WALLET page (not the plans modal
+//     directly: free users landing on the wallet already get the subscription
+//     modal auto-opened, while paying users see top-up options in place);
 //   - the balance is a quiet badge under the message — explanatory context
 //     for why the gate fired, not the star.
-// The caller preserves the draft (home keeps the composer text; chat restores
-// it), which is what makes the "this task can start right away" promise true.
+// The caller preserves the payload (home keeps the composer draft; chat parks
+// the full send in the queue), which is what makes the "this task can start
+// right away" promise true. The softer low-balance reminder lives in
+// AmrLowBalanceDialog; this hard tier is never subject to its opt-out.
 export function AmrBalanceDialog({
+  reason,
   balanceUsd,
   profile,
   entrySource,
@@ -47,10 +56,10 @@ export function AmrBalanceDialog({
   const t = useT();
   const analytics = useAnalytics();
   const formattedBalance = formatVelaBalanceUsd(balanceUsd);
-  const openPlans = () => {
+  const openWallet = () => {
     // Same attribution handshake as the other Open Design Cloud handoffs
     // (ChatPane recharge, AvatarMenu upgrade): record the amr_entry, forward
-    // the consent-gated device id, open the plans view for the profile.
+    // the consent-gated device id, and open the console for the profile.
     const attribution = recordAmrEntry(analytics.track, entrySource, new Date(), {
       metricsConsent,
     });
@@ -60,7 +69,7 @@ export function AmrBalanceDialog({
       installationId,
     });
     window.open(
-      attributedAmrUrl(amrPlansUrlForProfile(profile), attribution, deviceId),
+      attributedAmrUrl(amrConsoleUrlForProfile(profile), attribution, deviceId),
       '_blank',
       'noopener,noreferrer',
     );
@@ -84,8 +93,12 @@ export function AmrBalanceDialog({
         <Icon name="sparkles" size={22} />
       </div>
       <h2 className={styles.title}>{t('chat.amrBalanceGate.title')}</h2>
-      <p className={styles.message}>{t('chat.amrBalanceGate.message')}</p>
-      {formattedBalance ? (
+      <p className={styles.message}>
+        {reason === 'signed_out'
+          ? t('chat.amrBalanceGate.signedOutMessage')
+          : t('chat.amrBalanceGate.message')}
+      </p>
+      {reason === 'insufficient' && formattedBalance ? (
         <span className={styles.balancePill}>
           {t('chat.amrBalanceGate.balanceLabel')} {formattedBalance}
         </span>
@@ -104,7 +117,7 @@ export function AmrBalanceDialog({
         <Button
           variant="primary"
           className={styles.cta}
-          onClick={openPlans}
+          onClick={openWallet}
           data-testid="amr-balance-dialog-plans"
         >
           {t('chat.amrBalanceGate.plansCta')}

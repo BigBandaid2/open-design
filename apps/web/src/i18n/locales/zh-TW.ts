@@ -23,6 +23,12 @@ export const zhTW: Dict = {
   "chat.amrBalanceGate.benefit4": "持續升級：一鍵部署、多模態、團隊版",
   "chat.amrBalanceGate.laterCta": "暫不需要",
   "chat.amrBalanceGate.plansCta": "查看方案",
+  "chat.amrBalanceGate.signedOutMessage": "登入 Open Design Cloud 並訂閱方案後，即可發起任務。",
+  "chat.amrLowBalance.title": "額度不多了",
+  "chat.amrLowBalance.message": "目前餘額僅剩 {balance}，任務可能因額度不足中途失敗。建議先儲值或升級方案，避免任務中斷。",
+  "chat.amrLowBalance.rechargeCta": "去儲值",
+  "chat.amrLowBalance.proceedCta": "仍要發起任務",
+  "chat.amrLowBalance.dontRemind": "不再提示",
   "chat.antigravityError.launchTerminalCta": "透過終端機登入",
   "chat.antigravityError.launchSwitchModelCta": "在終端機中切換模型",
   "chat.connectionDropped":

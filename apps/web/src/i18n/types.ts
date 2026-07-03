@@ -2404,6 +2404,12 @@ export interface Dict {
   'chat.amrBalanceGate.benefit4': string;
   'chat.amrBalanceGate.laterCta': string;
   'chat.amrBalanceGate.plansCta': string;
+  'chat.amrBalanceGate.signedOutMessage': string;
+  'chat.amrLowBalance.title': string;
+  'chat.amrLowBalance.message': string;
+  'chat.amrLowBalance.rechargeCta': string;
+  'chat.amrLowBalance.proceedCta': string;
+  'chat.amrLowBalance.dontRemind': string;
   'chat.antigravityError.launchTerminalCta': string;
   'chat.antigravityError.launchSwitchModelCta': string;
   'chat.connectionDropped': string;

@@ -101,8 +101,9 @@ import { DEFAULT_NOTIFICATIONS } from '../state/config';
 import type { TodoItem } from '../runtime/todos';
 import { appendErrorStatusEvent } from '../runtime/chat-events';
 import { RESUME_CONTINUE_PROMPT } from '../runtime/resume';
-import { checkAmrBalanceGate, type AmrBalanceGateResult } from '../runtime/amr-balance-gate';
+import { checkAmrBalanceGate } from '../runtime/amr-balance-gate';
 import { AmrBalanceDialog } from './AmrBalanceDialog';
+import { AmrLowBalanceDialog, type AmrLowBalanceDecision } from './AmrLowBalanceDialog';
 import {
   cancelBrandExtraction,
   continueBrandExtraction,
@@ -1539,9 +1540,16 @@ export function ProjectView({
   const autoOpenedBrandDesignSystemRef = useRef<string | null>(null);
   const brandEmptyTranscriptRetriesRef = useRef<Map<string, number>>(new Map());
   const [chatSeed, setChatSeed] = useState<{ id: string; value: string } | null>(null);
-  // Wallet snapshot that blocked the last AMR send (pre-run balance gate);
+  // Hard block from the pre-run balance gate (empty wallet or signed out);
   // non-null renders the AmrBalanceDialog. See checkAmrBalanceGate.
-  const [amrBalanceGateSnapshot, setAmrBalanceGateSnapshot] = useState<AmrWalletSnapshot | null>(null);
+  const [amrBalanceGateBlock, setAmrBalanceGateBlock] = useState<
+    { reason: 'insufficient' | 'signed_out'; snapshot: AmrWalletSnapshot } | null
+  >(null);
+  // Soft low-balance warning holding a pending send: the dialog resolves the
+  // promise the gate is awaiting ('proceed' continues the very same send).
+  const [amrLowBalanceWarn, setAmrLowBalanceWarn] = useState<
+    { snapshot: AmrWalletSnapshot; resolve: (decision: AmrLowBalanceDecision) => void } | null
+  >(null);
   // Conversations with a balance-gate check currently in flight. Sends that
   // arrive during the check queue instead of racing a duplicate run through
   // the not-yet-busy window the gate's await opens.
@@ -4305,41 +4313,57 @@ export function ProjectView({
           return false;
         }
         amrGateInFlightConversationsRef.current.add(gateConversationId);
-        let gate: AmrBalanceGateResult;
         try {
-          gate = await checkAmrBalanceGate();
-        } finally {
-          amrGateInFlightConversationsRef.current.delete(gateConversationId);
-        }
-        // The await may have raced a conversation switch; re-run the entry
-        // guard before touching any state so this stale closure can't write
-        // the old conversation's messages into the now-visible view.
-        if (messagesConversationIdRef.current !== activeConversationId) return false;
-        if (gate.blocked) {
-          setAmrBalanceGateSnapshot(gate.snapshot);
+          const gate = await checkAmrBalanceGate();
           // A blocked send parks in the conversation queue with its FULL
           // payload (prompt, attachments, comment context) — the composer
           // already cleared itself, and a text-only draft restore would
           // silently drop staged attachments. Retries keep their error card
-          // and queue drains already have their queue item, so both skip
-          // the re-queue.
-          if (!retryTarget && !meta?.queueDrain) {
-            queueChatSendForCurrentConversation({
-              conversationId: gateConversationId,
-              prompt,
-              attachments: effectiveAttachments,
-              commentAttachments,
-              meta: { ...(meta ?? {}), sessionMode: runSessionMode },
-            });
+          // and queue drains already have their queue item, so both skip the
+          // re-queue. The pause keeps queued items from re-hitting the gate
+          // (and re-popping a dialog) on every unrelated state change; any
+          // later send that passes the gate lifts it, and a manual "run now"
+          // on a queued item bypasses it deliberately.
+          const parkBlockedSend = () => {
+            if (!retryTarget && !meta?.queueDrain) {
+              queueChatSendForCurrentConversation({
+                conversationId: gateConversationId,
+                prompt,
+                attachments: effectiveAttachments,
+                commentAttachments,
+                meta: { ...(meta ?? {}), sessionMode: runSessionMode },
+              });
+            }
+            amrGatePausedQueueConversationsRef.current.add(gateConversationId);
+          };
+          // The await may have raced a conversation switch; re-run the entry
+          // guard before touching any state so this stale closure can't write
+          // the old conversation's messages into the now-visible view.
+          if (messagesConversationIdRef.current !== activeConversationId) return false;
+          if (gate.kind === 'hard') {
+            setAmrBalanceGateBlock({ reason: gate.reason, snapshot: gate.snapshot });
+            parkBlockedSend();
+            return false;
           }
-          // Pause auto-draining for this conversation so queued items don't
-          // re-hit the gate (and re-pop the dialog) on every unrelated state
-          // change. Any later send that passes the gate lifts the pause; a
-          // manual "run now" on a queued item bypasses it deliberately.
-          amrGatePausedQueueConversationsRef.current.add(gateConversationId);
-          return false;
+          if (gate.kind === 'soft') {
+            // Low balance: pause THIS send while the reminder dialog waits
+            // for a decision. 'proceed' resumes the very same send below —
+            // a continuation, not a re-submit.
+            const decision = await new Promise<AmrLowBalanceDecision>((resolve) => {
+              setAmrLowBalanceWarn({ snapshot: gate.snapshot, resolve });
+            });
+            setAmrLowBalanceWarn(null);
+            // Same conversation-switch guard for the dialog-open window; the
+            // payload is parked (not sent) so nothing is lost either way.
+            if (decision !== 'proceed' || messagesConversationIdRef.current !== activeConversationId) {
+              parkBlockedSend();
+              return false;
+            }
+          }
+          amrGatePausedQueueConversationsRef.current.delete(gateConversationId);
+        } finally {
+          amrGateInFlightConversationsRef.current.delete(gateConversationId);
         }
-        amrGatePausedQueueConversationsRef.current.delete(gateConversationId);
       }
       setChatSeed(null);
       const runConversationId = activeConversationId;
@@ -7921,14 +7945,25 @@ export function ProjectView({
           onClose={() => setContextDesignSystemDetails(null)}
         />
       ) : null}
-      {amrBalanceGateSnapshot ? (
+      {amrBalanceGateBlock ? (
         <AmrBalanceDialog
-          balanceUsd={amrBalanceGateSnapshot.balanceUsd}
-          profile={amrBalanceGateSnapshot.profile}
+          reason={amrBalanceGateBlock.reason}
+          balanceUsd={amrBalanceGateBlock.snapshot.balanceUsd}
+          profile={amrBalanceGateBlock.snapshot.profile}
           entrySource="chat_balance_gate_upgrade"
           metricsConsent={config.telemetry?.metrics === true}
           installationId={config.installationId}
-          onClose={() => setAmrBalanceGateSnapshot(null)}
+          onClose={() => setAmrBalanceGateBlock(null)}
+        />
+      ) : null}
+      {amrLowBalanceWarn ? (
+        <AmrLowBalanceDialog
+          balanceUsd={amrLowBalanceWarn.snapshot.balanceUsd}
+          profile={amrLowBalanceWarn.snapshot.profile}
+          entrySource="chat_low_balance_warn_recharge"
+          metricsConsent={config.telemetry?.metrics === true}
+          installationId={config.installationId}
+          onDecision={amrLowBalanceWarn.resolve}
         />
       ) : null}
       <AnimatePresence>

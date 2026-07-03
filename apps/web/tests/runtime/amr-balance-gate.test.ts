@@ -1,9 +1,14 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+// @vitest-environment jsdom
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { AmrWalletSnapshot } from '@open-design/contracts';
 import {
-  AMR_RUN_MIN_BALANCE_USD,
+  AMR_HARD_BLOCK_BALANCE_USD,
+  AMR_LOW_BALANCE_WARN_USD,
   amrWalletBalanceInsufficient,
+  amrWalletBalanceUsd,
   checkAmrBalanceGate,
+  isAmrLowBalanceWarnOptedOut,
+  setAmrLowBalanceWarnOptedOut,
 } from '../../src/runtime/amr-balance-gate';
 import { fetchAmrWalletSnapshot } from '../../src/providers/daemon';
 
@@ -27,74 +32,122 @@ function snapshot(overrides: Partial<AmrWalletSnapshot> = {}): AmrWalletSnapshot
   };
 }
 
+beforeEach(() => {
+  window.localStorage.clear();
+});
+
 afterEach(() => {
   mockedFetch.mockReset();
 });
 
+describe('amrWalletBalanceUsd', () => {
+  it('parses only definitive answers', () => {
+    expect(amrWalletBalanceUsd(snapshot({ balanceUsd: '12.3' }))).toBe(12.3);
+    expect(amrWalletBalanceUsd(snapshot({ balanceUsd: '-1.25' }))).toBe(-1.25);
+    expect(amrWalletBalanceUsd(null)).toBeNull();
+    expect(amrWalletBalanceUsd(snapshot({ balanceUsd: null }))).toBeNull();
+    expect(amrWalletBalanceUsd(snapshot({ balanceUsd: 'not-a-number' }))).toBeNull();
+    // Number(' ') is 0 — whitespace must stay indefinite, not read as $0.
+    expect(amrWalletBalanceUsd(snapshot({ balanceUsd: ' ' }))).toBeNull();
+    expect(amrWalletBalanceUsd(snapshot({ balanceUsd: '\n\t' }))).toBeNull();
+    expect(amrWalletBalanceUsd(snapshot({ status: 'signed_out', balanceUsd: '0' }))).toBeNull();
+    expect(amrWalletBalanceUsd(snapshot({ status: 'unavailable', balanceUsd: '0' }))).toBeNull();
+  });
+});
+
 describe('amrWalletBalanceInsufficient', () => {
-  it('is true only for a definitive balance at or below the run minimum', () => {
+  it('is true only for a definitive balance at or below the hard-block line', () => {
+    expect(AMR_HARD_BLOCK_BALANCE_USD).toBe(0);
     expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '0' }))).toBe(true);
     expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '-1.25' }))).toBe(true);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '12.3' }))).toBe(false);
-  });
-
-  it('blocks up to the redundancy threshold, not just an empty wallet', () => {
-    // A run costs far more than the minimum, so a few residual cents must
-    // still block — the run would be guaranteed to fail mid-flight.
-    expect(AMR_RUN_MIN_BALANCE_USD).toBeCloseTo(0.1);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '0.05' }))).toBe(true);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '0.1' }))).toBe(true);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '0.1000' }))).toBe(true);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '0.11' }))).toBe(false);
-  });
-
-  it('never blocks on an indefinite answer', () => {
+    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '0.01' }))).toBe(false);
     expect(amrWalletBalanceInsufficient(null)).toBe(false);
-    expect(amrWalletBalanceInsufficient(undefined)).toBe(false);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: null }))).toBe(false);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: 'not-a-number' }))).toBe(false);
-    // Number(' ') is 0 — a whitespace-only balance must fail open, not read
-    // as a definitive $0.
     expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: ' ' }))).toBe(false);
-    expect(amrWalletBalanceInsufficient(snapshot({ balanceUsd: '\n\t' }))).toBe(false);
-    expect(
-      amrWalletBalanceInsufficient(snapshot({ status: 'signed_out', balanceUsd: '0' })),
-    ).toBe(false);
-    expect(
-      amrWalletBalanceInsufficient(snapshot({ status: 'unavailable', balanceUsd: '0' })),
-    ).toBe(false);
   });
 });
 
 describe('checkAmrBalanceGate', () => {
-  it('allows on a sufficient cached balance without a refresh roundtrip', async () => {
-    mockedFetch.mockResolvedValueOnce(snapshot({ balanceUsd: '5.00' }));
-    await expect(checkAmrBalanceGate()).resolves.toEqual({ blocked: false });
+  it('allows a healthy balance without a refresh roundtrip', async () => {
+    mockedFetch.mockResolvedValueOnce(snapshot({ balanceUsd: '50.00' }));
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'allow' });
     expect(mockedFetch).toHaveBeenCalledTimes(1);
     expect(mockedFetch).toHaveBeenCalledWith();
   });
 
-  it('confirms an insufficient cached balance against the live wallet before blocking', async () => {
-    const fresh = snapshot({ balanceUsd: '0.08' });
+  it('soft-warns between the hard-block and low-balance lines', async () => {
+    expect(AMR_LOW_BALANCE_WARN_USD).toBe(5);
+    const low = snapshot({ balanceUsd: '3.20' });
+    mockedFetch.mockResolvedValueOnce(low);
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'soft', snapshot: low });
+    // Soft trusts the cache — no upstream refresh for a dismissible reminder.
+    expect(mockedFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it('soft-warns exactly at the low-balance line and allows just above it', async () => {
+    const atLine = snapshot({ balanceUsd: '5.00' });
+    mockedFetch.mockResolvedValueOnce(atLine);
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'soft', snapshot: atLine });
+    mockedFetch.mockReset();
+    mockedFetch.mockResolvedValueOnce(snapshot({ balanceUsd: '5.01' }));
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'allow' });
+  });
+
+  it('skips the soft warning once the user opted out — but never the hard block', async () => {
+    expect(isAmrLowBalanceWarnOptedOut()).toBe(false);
+    setAmrLowBalanceWarnOptedOut();
+    expect(isAmrLowBalanceWarnOptedOut()).toBe(true);
+    mockedFetch.mockResolvedValueOnce(snapshot({ balanceUsd: '3.20' }));
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'allow' });
+    mockedFetch.mockReset();
+    const empty = snapshot({ balanceUsd: '0' });
+    mockedFetch.mockResolvedValueOnce(empty).mockResolvedValueOnce(empty);
+    await expect(checkAmrBalanceGate()).resolves.toEqual({
+      kind: 'hard',
+      reason: 'insufficient',
+      snapshot: empty,
+    });
+  });
+
+  it('confirms a hard-block candidate against the live wallet before blocking', async () => {
+    const fresh = snapshot({ balanceUsd: '0' });
     mockedFetch
-      .mockResolvedValueOnce(snapshot({ balanceUsd: '0.08', source: 'daemon_cache' }))
+      .mockResolvedValueOnce(snapshot({ balanceUsd: '0', source: 'daemon_cache' }))
       .mockResolvedValueOnce(fresh);
     await expect(checkAmrBalanceGate()).resolves.toEqual({
-      blocked: true,
+      kind: 'hard',
+      reason: 'insufficient',
       snapshot: fresh,
     });
     expect(mockedFetch).toHaveBeenNthCalledWith(2, { refresh: true });
   });
 
-  it('lets a just-recharged wallet through (stale-low cache, sufficient refresh)', async () => {
+  it('hard-blocks a signed-out account after refresh confirmation', async () => {
+    const signedOut = snapshot({ status: 'signed_out', balanceUsd: null, user: null });
+    mockedFetch.mockResolvedValueOnce(signedOut).mockResolvedValueOnce(signedOut);
+    await expect(checkAmrBalanceGate()).resolves.toEqual({
+      kind: 'hard',
+      reason: 'signed_out',
+      snapshot: signedOut,
+    });
+  });
+
+  it('lets a just-recharged wallet through (stale-empty cache, healthy refresh)', async () => {
     mockedFetch
       .mockResolvedValueOnce(snapshot({ balanceUsd: '0', source: 'daemon_cache' }))
       .mockResolvedValueOnce(snapshot({ balanceUsd: '20.00' }));
-    await expect(checkAmrBalanceGate()).resolves.toEqual({ blocked: false });
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'allow' });
   });
 
-  it('never blocks when the wallet endpoint fails', async () => {
+  it('downgrades a stale-empty cache to soft when the refresh lands low', async () => {
+    const low = snapshot({ balanceUsd: '2.00' });
+    mockedFetch
+      .mockResolvedValueOnce(snapshot({ balanceUsd: '0', source: 'daemon_cache' }))
+      .mockResolvedValueOnce(low);
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'soft', snapshot: low });
+  });
+
+  it('never gates when the wallet endpoint fails', async () => {
     mockedFetch.mockRejectedValue(new Error('network down'));
-    await expect(checkAmrBalanceGate()).resolves.toEqual({ blocked: false });
+    await expect(checkAmrBalanceGate()).resolves.toEqual({ kind: 'allow' });
   });
 });
