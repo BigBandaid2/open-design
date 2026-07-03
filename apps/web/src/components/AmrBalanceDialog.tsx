@@ -110,13 +110,11 @@ export function AmrBalanceDialog({
       <p className={styles.message}>
         {signedOut
           ? t('chat.amrBalanceGate.signedOutMessage')
-          : t('chat.amrBalanceGate.message')}
+          : // The insufficient variant always carries a definitive balance
+            // (that's what made the gate fire); the fallback is belt and
+            // suspenders for a malformed snapshot.
+            t('chat.amrBalanceGate.message', { balance: formattedBalance ?? '$0.00' })}
       </p>
-      {!signedOut && formattedBalance ? (
-        <span className={styles.balancePill}>
-          {t('chat.amrBalanceGate.balanceLabel')} {formattedBalance}
-        </span>
-      ) : null}
       <div className={styles.benefitsCard}>
         <span className={styles.benefitsTitle}>
           {t('chat.amrBalanceGate.benefitsTitle')}

@@ -33,26 +33,11 @@
 }
 
 .message {
-  margin: 0 0 12px;
+  margin: 0 0 18px;
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--text-muted);
   text-wrap: balance;
-}
-
-/* Current-balance badge: visible enough to explain WHY the gate fired,
- * placed with the message (state context) rather than buried at the bottom. */
-.balancePill {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 5px;
-  margin-bottom: 18px;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border);
-  background: var(--bg-subtle);
-  font-size: 12px;
-  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 
