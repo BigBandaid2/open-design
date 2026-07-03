@@ -2404,7 +2404,9 @@ export interface Dict {
   'chat.amrBalanceGate.benefit4': string;
   'chat.amrBalanceGate.laterCta': string;
   'chat.amrBalanceGate.plansCta': string;
+  'chat.amrBalanceGate.signedOutTitle': string;
   'chat.amrBalanceGate.signedOutMessage': string;
+  'chat.amrBalanceGate.signInCta': string;
   'chat.amrLowBalance.title': string;
   'chat.amrLowBalance.message': string;
   'chat.amrLowBalance.rechargeCta': string;
