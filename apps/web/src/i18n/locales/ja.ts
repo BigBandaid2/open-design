@@ -12,7 +12,7 @@ export const ja: Dict = {
   'chat.amrError.authorizeCta': '認可して再試行',
   'chat.amrError.rechargeCta': 'Open Design にチャージ',
   'chat.amrBalanceGate.title': 'クレジットを追加して創作を続ける',
-  'chat.amrBalanceGate.message': 'このタスクを実行するにはクレジットが不足しています。プランのアップグレードまたはチャージをすると、すぐに開始できます。',
+  'chat.amrBalanceGate.message': 'クレジットが不足しています。プランのアップグレードまたはチャージ後、すぐに開始できます。',
   'chat.amrBalanceGate.balanceLabel': '現在の残高',
   'chat.amrBalanceGate.benefit1': 'API キー不要、豊富なモデルを自由に',
   'chat.amrBalanceGate.benefit2': 'SOTA デザインエージェント内蔵、設定不要',

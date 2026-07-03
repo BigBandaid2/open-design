@@ -12,7 +12,7 @@ export const ko: Dict = {
   'chat.amrError.authorizeCta': '인증하고 재시도',
   'chat.amrError.rechargeCta': 'Open Design 충전',
   'chat.amrBalanceGate.title': '크레딧을 받고 계속 만들기',
-  'chat.amrBalanceGate.message': '이 작업을 실행하기에 크레딧이 부족합니다. 요금제를 업그레이드하거나 크레딧을 충전하면 바로 시작할 수 있습니다.',
+  'chat.amrBalanceGate.message': '크레딧이 부족합니다. 요금제 업그레이드 또는 충전 후 바로 시작할 수 있습니다.',
   'chat.amrBalanceGate.balanceLabel': '현재 잔액',
   'chat.amrBalanceGate.benefit1': 'API 키 없이 다양한 모델 사용',
   'chat.amrBalanceGate.benefit2': 'SOTA 디자인 에이전트 내장, 설정 불필요',

@@ -12,7 +12,7 @@ export const ru: Dict = {
   'chat.amrError.authorizeCta': 'Авторизовать и повторить',
   'chat.amrError.rechargeCta': 'Пополнить Open Design',
   'chat.amrBalanceGate.title': 'Получите кредиты и продолжайте творить',
-  'chat.amrBalanceGate.message': 'Кредитов недостаточно для запуска этой задачи. Улучшите тариф или пополните кредиты — и она сразу запустится.',
+  'chat.amrBalanceGate.message': 'Недостаточно кредитов. Улучшите тариф или пополните баланс — и задача сразу запустится.',
   'chat.amrBalanceGate.balanceLabel': 'Текущий баланс',
   'chat.amrBalanceGate.benefit1': 'Без API-ключей — большой выбор моделей',
   'chat.amrBalanceGate.benefit2': 'Встроенный SOTA-агент для дизайна, без настройки',

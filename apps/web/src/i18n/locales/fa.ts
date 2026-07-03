@@ -12,7 +12,7 @@ export const fa: Dict = {
   'chat.amrError.authorizeCta': 'اعطای دسترسی و تلاش مجدد',
   'chat.amrError.rechargeCta': 'شارژ Open Design',
   'chat.amrBalanceGate.title': 'اعتبار بگیرید و به خلق ادامه دهید',
-  'chat.amrBalanceGate.message': 'اعتبار شما برای اجرای این وظیفه کافی نیست. طرح خود را ارتقا دهید یا اعتبار شارژ کنید تا بلافاصله شروع شود.',
+  'chat.amrBalanceGate.message': 'اعتبار کافی نیست. پس از ارتقای طرح یا شارژ، وظیفه بلافاصله شروع می‌شود.',
   'chat.amrBalanceGate.balanceLabel': 'موجودی فعلی',
   'chat.amrBalanceGate.benefit1': 'بدون کلید API، مدل‌های فراوان در دسترس',
   'chat.amrBalanceGate.benefit2': 'ایجنت طراحی SOTA داخلی، بدون پیکربندی',

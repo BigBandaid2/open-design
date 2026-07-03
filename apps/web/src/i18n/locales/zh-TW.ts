@@ -15,7 +15,7 @@ export const zhTW: Dict = {
   "chat.amrError.authorizeCta": "授權並重試",
   "chat.amrError.rechargeCta": "為 AMR 儲值",
   "chat.amrBalanceGate.title": "取得額度，繼續創作",
-  "chat.amrBalanceGate.message": "目前額度不足以執行這個任務。請升級方案或儲值額度，任務馬上就能開始。",
+  "chat.amrBalanceGate.message": "餘額不足，升級方案或儲值後，任務馬上就能開始。",
   "chat.amrBalanceGate.balanceLabel": "目前餘額",
   "chat.amrBalanceGate.benefit1": "無需 API Key，海量模型任選",
   "chat.amrBalanceGate.benefit2": "自帶 SOTA Design Agent，零設定",

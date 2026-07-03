@@ -12,7 +12,7 @@ export const id: Dict = {
   'chat.amrError.authorizeCta': 'Otorisasi & coba lagi',
   'chat.amrError.rechargeCta': 'Isi ulang Open Design',
   'chat.amrBalanceGate.title': 'Dapatkan kredit dan terus berkarya',
-  'chat.amrBalanceGate.message': 'Kredit Anda tidak cukup untuk menjalankan tugas ini. Tingkatkan paket atau isi ulang kredit, dan tugas bisa langsung dimulai.',
+  'chat.amrBalanceGate.message': 'Kredit tidak cukup. Tingkatkan paket atau isi ulang, dan tugas bisa langsung dimulai.',
   'chat.amrBalanceGate.balanceLabel': 'Saldo saat ini',
   'chat.amrBalanceGate.benefit1': 'Tanpa API key, banyak model tersedia',
   'chat.amrBalanceGate.benefit2': 'Agen desain SOTA bawaan, tanpa konfigurasi',

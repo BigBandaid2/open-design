@@ -12,7 +12,7 @@ export const hu: Dict = {
   'chat.amrError.authorizeCta': 'Engedélyezés és újrapróbálkozás',
   'chat.amrError.rechargeCta': 'Open Design feltöltése',
   'chat.amrBalanceGate.title': 'Szerezz keretet és alkoss tovább',
-  'chat.amrBalanceGate.message': 'Nincs elég kereted a feladat futtatásához. Válts nagyobb csomagra vagy tölts fel keretet, és azonnal indulhat.',
+  'chat.amrBalanceGate.message': 'Nincs elég keret. Csomagváltás vagy feltöltés után a feladat azonnal indulhat.',
   'chat.amrBalanceGate.balanceLabel': 'Jelenlegi egyenleg',
   'chat.amrBalanceGate.benefit1': 'API-kulcs nélkül, rengeteg modell',
   'chat.amrBalanceGate.benefit2': 'Beépített SOTA design agent, beállítás nélkül',

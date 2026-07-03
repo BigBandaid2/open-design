@@ -12,7 +12,7 @@ export const de: Dict = {
   'chat.amrError.authorizeCta': 'Autorisieren und wiederholen',
   'chat.amrError.rechargeCta': 'Open Design aufladen',
   'chat.amrBalanceGate.title': 'Hol dir Guthaben und gestalte weiter',
-  'chat.amrBalanceGate.message': 'Dein Guthaben reicht nicht aus, um diese Aufgabe auszuführen. Upgrade deinen Plan oder lade Guthaben auf, und sie kann sofort starten.',
+  'chat.amrBalanceGate.message': 'Guthaben reicht nicht aus. Nach Plan-Upgrade oder Aufladung kann die Aufgabe sofort starten.',
   'chat.amrBalanceGate.balanceLabel': 'Aktuelles Guthaben',
   'chat.amrBalanceGate.benefit1': 'Keine API-Keys — Top-Modelle frei wählbar',
   'chat.amrBalanceGate.benefit2': 'SOTA-Design-Agent integriert, ohne Einrichtung',

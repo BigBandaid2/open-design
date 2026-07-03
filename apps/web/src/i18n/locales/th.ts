@@ -12,7 +12,7 @@ export const th: Dict = {
   'chat.amrError.authorizeCta': 'ให้สิทธิ์และลองใหม่',
   'chat.amrError.rechargeCta': 'เติมเงิน Open Design',
   'chat.amrBalanceGate.title': 'รับเครดิตแล้วสร้างสรรค์ต่อ',
-  'chat.amrBalanceGate.message': 'เครดิตของคุณไม่พอสำหรับรันงานนี้ อัปเกรดแพ็กเกจหรือเติมเครดิต แล้วงานจะเริ่มได้ทันที',
+  'chat.amrBalanceGate.message': 'เครดิตไม่พอ อัปเกรดแพ็กเกจหรือเติมเงินแล้วงานจะเริ่มได้ทันที',
   'chat.amrBalanceGate.balanceLabel': 'ยอดเงินปัจจุบัน',
   'chat.amrBalanceGate.benefit1': 'ไม่ต้องใช้ API Key เลือกใช้ได้หลายโมเดล',
   'chat.amrBalanceGate.benefit2': 'มี Design Agent ระดับ SOTA ในตัว ไม่ต้องตั้งค่า',

@@ -12,7 +12,7 @@ export const en: Dict = {
   'chat.amrError.authorizeCta': 'Authorize & retry',
   'chat.amrError.rechargeCta': 'Top up',
   'chat.amrBalanceGate.title': 'Get credits to keep creating',
-  'chat.amrBalanceGate.message': 'You don\'t have enough credits to run this task. Upgrade your plan or top up credits, and it can start right away.',
+  'chat.amrBalanceGate.message': 'Not enough credits. Upgrade your plan or top up, and this task can start right away.',
   'chat.amrBalanceGate.balanceLabel': 'Current balance',
   'chat.amrBalanceGate.benefit1': 'No API keys — top models included',
   'chat.amrBalanceGate.benefit2': 'SOTA design agent built in, zero setup',

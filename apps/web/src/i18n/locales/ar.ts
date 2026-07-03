@@ -12,7 +12,7 @@ export const ar: Dict = {
   'chat.amrError.authorizeCta': 'تفويض وإعادة المحاولة',
   'chat.amrError.rechargeCta': 'شحن Open Design',
   'chat.amrBalanceGate.title': 'احصل على أرصدة وواصل الإبداع',
-  'chat.amrBalanceGate.message': 'أرصدتك لا تكفي لتشغيل هذه المهمة. قم بترقية باقتك أو اشحن أرصدة وستبدأ فورًا.',
+  'chat.amrBalanceGate.message': 'الرصيد غير كافٍ. قم بترقية الباقة أو الشحن وستبدأ المهمة فورًا.',
   'chat.amrBalanceGate.balanceLabel': 'الرصيد الحالي',
   'chat.amrBalanceGate.benefit1': 'بدون مفاتيح API — تشكيلة واسعة من النماذج',
   'chat.amrBalanceGate.benefit2': 'وكيل تصميم SOTA مدمج، دون أي إعداد',

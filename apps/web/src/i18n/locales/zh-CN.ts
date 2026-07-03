@@ -15,7 +15,7 @@ export const zhCN: Dict = {
   "chat.amrError.authorizeCta": "授权并重试",
   "chat.amrError.rechargeCta": "为 AMR 充值",
   "chat.amrBalanceGate.title": "获取额度，继续创作",
-  "chat.amrBalanceGate.message": "当前额度不足以运行这个任务。请升级套餐或充值额度，任务马上就能开始。",
+  "chat.amrBalanceGate.message": "余额不足，升级套餐或充值后，任务马上就能开始。",
   "chat.amrBalanceGate.balanceLabel": "当前余额",
   "chat.amrBalanceGate.benefit1": "无需 API Key，海量模型任选",
   "chat.amrBalanceGate.benefit2": "自带 SOTA Design Agent，零配置",

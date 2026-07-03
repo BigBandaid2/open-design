@@ -12,7 +12,7 @@ export const uk: Dict = {
   'chat.amrError.authorizeCta': 'Авторизувати та повторити',
   'chat.amrError.rechargeCta': 'Поповнити Open Design',
   'chat.amrBalanceGate.title': 'Отримайте кредити та продовжуйте творити',
-  'chat.amrBalanceGate.message': 'Кредитів недостатньо для запуску цього завдання. Покращте тариф або поповніть кредити — і воно одразу запуститься.',
+  'chat.amrBalanceGate.message': 'Недостатньо кредитів. Покращте тариф або поповніть баланс — і завдання одразу запуститься.',
   'chat.amrBalanceGate.balanceLabel': 'Поточний баланс',
   'chat.amrBalanceGate.benefit1': 'Без API-ключів — великий вибір моделей',
   'chat.amrBalanceGate.benefit2': 'Вбудований SOTA-агент для дизайну, без налаштувань',

@@ -12,7 +12,7 @@ export const it: Dict = {
   'chat.amrError.authorizeCta': 'Autorizza e riprova',
   'chat.amrError.rechargeCta': 'Ricarica Open Design',
   'chat.amrBalanceGate.title': 'Ottieni crediti e continua a creare',
-  'chat.amrBalanceGate.message': 'I crediti non bastano per eseguire questa attività. Passa a un piano superiore o ricarica crediti e potrà partire subito.',
+  'chat.amrBalanceGate.message': 'Crediti insufficienti. Aggiorna il piano o ricarica e l’attività potrà partire subito.',
   'chat.amrBalanceGate.balanceLabel': 'Saldo attuale',
   'chat.amrBalanceGate.benefit1': 'Niente chiavi API, ampia scelta di modelli',
   'chat.amrBalanceGate.benefit2': 'Agente di design SOTA integrato, zero configurazione',

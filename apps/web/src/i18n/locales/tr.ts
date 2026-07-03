@@ -12,7 +12,7 @@ export const tr: Dict = {
   'chat.amrError.authorizeCta': 'Yetkilendir ve yeniden dene',
   'chat.amrError.rechargeCta': 'Open Design bakiyesi yükle',
   'chat.amrBalanceGate.title': 'Kredi edinin, üretmeye devam edin',
-  'chat.amrBalanceGate.message': 'Bu görevi çalıştırmak için krediniz yetersiz. Planınızı yükseltin veya kredi yükleyin, görev hemen başlayabilir.',
+  'chat.amrBalanceGate.message': 'Kredi yetersiz. Planınızı yükseltin veya bakiye yükleyin, görev hemen başlayabilir.',
   'chat.amrBalanceGate.balanceLabel': 'Mevcut bakiye',
   'chat.amrBalanceGate.benefit1': 'API anahtarı gerekmez, çok sayıda model',
   'chat.amrBalanceGate.benefit2': 'SOTA tasarım ajanı dahili, kurulum gerekmez',
